@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="zh" xml:th="http://www.thymeleaf.org">
+  <head>
+    <meta charset="UTF-8" />
+    <title>学生管理</title>
+    <script src="https://cdn.tailwindcss.com/"></script>
+  </head>
+
+  <body>
+    <h1>添加学生</h1>
+    <!-- 信息 -->
+    <form action="/student/add_action" method="get">
+      <label for="username">姓名</label>
+      <input type="text" name="username" id="username" value="" />
+      <label for="grade">年级</label>
+      <input type="number" name="grade" id="grade" value="" />
+      <label for="major">专业</label>
+      <input type="text" name="major" id="major" value="" />
+      <label for="clazz">班级</label>
+      <input type="number" name="clazz" id="clazz" value="" />
+      <input type="submit" value="添加" />
+    </form>
+  </body>
+</html>
