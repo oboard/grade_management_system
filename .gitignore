@@ -31,3 +31,9 @@ build/
 
 ### VS Code ###
 .vscode/
+
+
+# macos
+.DS_Store
+.AppleDouble
+.LSOverride
