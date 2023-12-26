@@ -12,13 +12,34 @@ import java.util.List;
 public class UserServiceImpl implements UserService {
     @Autowired
     UserMapper userMapper;
+
     @Override
-    public User selectUserByName(String name) {
-        return userMapper.selectUserByName(name);
+    public User selectUserByUsername(String username) {
+        return userMapper.selectUserByUsername(username);
     }
 
     @Override
     public List<User> selectList() {
         return userMapper.selectList();
+    }
+
+    @Override
+    public User selectUserById(Long id) {
+        return userMapper.selectUserById(id);
+    }
+
+    @Override
+    public Long insertUser(User user) {
+        return userMapper.insertUser(user);
+    }
+
+    @Override
+    public void deleteUser(Long id) {
+        userMapper.deleteUser(id);
+    }
+
+    @Override
+    public User updateUser(User user) {
+        return userMapper.updateUser(user);
     }
 }

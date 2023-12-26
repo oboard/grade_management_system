@@ -5,7 +5,16 @@ import com.lyh.grade_management_system.bean.User;
 import java.util.List;
 
 public interface UserMapper {
-    User selectUserByName(String name);
+    User selectUserByUsername(String username);
 
     List<User> selectList();
+
+    Long insertUser(User user);
+
+    void deleteUser(Long id);
+
+    User updateUser(User user);
+
+
+    User selectUserById(Long id);
 }

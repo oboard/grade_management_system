@@ -1,10 +1,32 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.lyh.grade_management_system.mapper.UserMapper">
-    <select id="selectUserByName" resultType="com.lyh.grade_management_system.bean.User">
-        select * from user where name=#{username}
+    <select id="selectUserByUsername" resultType="com.lyh.grade_management_system.bean.User">
+        select *
+        from user
+        where username = #{username}
     </select>
     <select id="selectList" resultType="com.lyh.grade_management_system.bean.User">
-        select * from user
+        select *
+        from user
+    </select>
+    <insert id="insertUser" parameterType="com.lyh.grade_management_system.bean.User">
+        insert into user(username, password, role, grade, clazz, major)
+        values(#{username}, #{password}, #{role}, #{grade}, #{clazz}, #{major})
+    </insert>
+    <update id="updateUser" parameterType="com.lyh.grade_management_system.bean.User">
+        update user
+        set password = #{password}, role = #{role}, grade = #{grade}, clazz = #{clazz}, major = #{major}
+        where id = #{id}
+    </update>
+    <delete id="deleteUser">
+        delete
+        from user
+        where id = #{id}
+    </delete>
+    <select id="selectUserById" resultType="com.lyh.grade_management_system.bean.User">
+        select *
+        from user
+        where id = #{id}
     </select>
 </mapper>
