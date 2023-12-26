@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en" xml:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>登陆</title>
+    <script src="https://cdn.tailwindcss.com/"></script>
+</head>
+<body>
+    <h1>登陆</h1>
+    <form action="/user/login" method="post">
+        <label>
+            <input type="text" name="username" placeholder="用户名">
+        </label>
+        <label>
+            <input type="password" name="password" placeholder="密码">
+        </label>
+        <input type="submit" value="登陆">
+    </form>
+    <a href="/register">注册</a>
+</body>
+</html>
