@@ -13,8 +13,7 @@ public interface UserMapper {
 
     void deleteUser(Long id);
 
-    User updateUser(User user);
-
+    void updateUser(User user);
 
     User selectUserById(Long id);
 }

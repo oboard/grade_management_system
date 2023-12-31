@@ -14,7 +14,7 @@ public class UserServiceImpl implements UserService {
     UserMapper userMapper;
 
     @Override
-    public User selectUserByUsername(String username) {
+    public User selectByUsername(String username) {
         return userMapper.selectUserByUsername(username);
     }
 
@@ -24,22 +24,22 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public User selectUserById(Long id) {
+    public User selectById(Long id) {
         return userMapper.selectUserById(id);
     }
 
     @Override
-    public Long insertUser(User user) {
+    public Long insert(User user) {
         return userMapper.insertUser(user);
     }
 
     @Override
-    public void deleteUser(Long id) {
+    public void delete(Long id) {
         userMapper.deleteUser(id);
     }
 
     @Override
-    public User updateUser(User user) {
-        return userMapper.updateUser(user);
+    public void update(User user) {
+        userMapper.updateUser(user);
     }
 }

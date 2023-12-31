@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="zh" xml:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8"/>
+    <title>学科管理</title>
+    <!-- Include Tailwind CSS from CDN -->
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+</head>
+
+<body class="bg-gray-100 p-8">
+
+<h1 class="text-3xl font-bold mb-6">学科管理</h1>
+
+<a href="/subject/add" class="m-4 text-white bg-blue-500 rounded-md p-3 absolute top-0 right-0 flex items-center">
+    <span class="mr-2">添加学科</span>
+    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" class="h-4 w-4">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"></path>
+    </svg>
+</a>
+<!-- 筛选条件 -->
+<form action="/subject/index" method="get" class="mb-6 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+    <div>
+        <label for="name" class="mr-2">名称</label>
+        <input type="text" name="name" id="name" value="" class="p-2 border rounded-md w-full"/>
+    </div>
+
+    <button type="submit" class="bg-blue-500 text-white px-4 py-2 rounded-md col-span-full lg:col-span-1">筛选</button>
+</form>
+
+<!-- 学生列表 -->
+<table class="w-full border-collapse border">
+    <thead>
+    <tr>
+        <th class="border p-2">名称</th>
+        <th class="border p-2">操作</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="subject:${subjects}" class="hover:bg-gray-200">
+        <td class="border p-2" th:text="${subject.name}"></td>
+        <td class="border p-2">
+            <a th:href="@{/subject/edit(id=${subject.id})}" class="text-blue-500 mr-2">更改</a>
+            <a th:href="@{/subject/delete(id=${subject.id})}" class="text-red-500">删除</a>
+        </td>
+    </tr>
+    </tbody>
+</table>
+</body>
+
+</html>

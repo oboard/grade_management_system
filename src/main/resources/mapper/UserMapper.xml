@@ -16,7 +16,7 @@
     </insert>
     <update id="updateUser" parameterType="com.lyh.grade_management_system.bean.User">
         update user
-        set password = #{password}, role = #{role}, grade = #{grade}, clazz = #{clazz}, major = #{major}
+        set username = #{username}, password = #{password}, role = #{role}, grade = #{grade}, clazz = #{clazz}, major = #{major}
         where id = #{id}
     </update>
     <delete id="deleteUser">

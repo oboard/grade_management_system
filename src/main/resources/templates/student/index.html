@@ -61,8 +61,8 @@
         <td class="border p-2" th:text="${user.major}"></td>
         <td class="border p-2" th:text="${user.clazz}"></td>
         <td class="border p-2">
-            <a href="@{/student/edit(id=${user.id})}" class="text-blue-500 mr-2">更改</a>
-            <a href="@{/student/delete(id=${user.id})}" class="text-red-500">删除</a>
+            <a th:href="@{/student/edit(id=${user.id})}" class="text-blue-500 mr-2">更改</a>
+            <a th:href="@{/student/delete(id=${user.id})}" class="text-red-500">删除</a>
         </td>
     </tr>
     </tbody>

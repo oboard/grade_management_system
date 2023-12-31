@@ -83,15 +83,15 @@ public class StudentController {
 
     @RequestMapping("/delete")
     public String delete(Long id) {
-        userService.deleteUser(id);
+        userService.delete(id);
         // 重定向到index
         return "redirect:/student/index";
     }
 
     @RequestMapping("/edit")
     public String edit(Long id, Model model) {
-        User user = userService.selectUserById(id);
-        model.addAttribute("user", user);
+        User user = userService.selectById(id);
+        model.addAttribute("student", user);
         return "/student/edit";
     }
 
@@ -112,7 +112,7 @@ public class StudentController {
         user.setMajor(major);
         user.setClazz(clazz);
         user.setRole(0);
-        userService.updateUser(user);
+        userService.update(user);
         // 重定向到index
         return "redirect:/student/index";
     }
@@ -132,7 +132,7 @@ public class StudentController {
         user.setMajor(major);
         user.setClazz(clazz);
         user.setRole(0);
-        userService.insertUser(user);
+        userService.insert(user);
         // 重定向到index
         return "redirect:/student/index";
     }

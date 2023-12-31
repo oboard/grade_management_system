@@ -15,10 +15,11 @@
     </tr>
     <tr th:each="user:${users}">
         <td th:text="${user.username}"></td>
-        <td th:text="${user.type}"></td>
-        <td th:text="${user.passwd}"></td>
+        <td th:text="${user.role==0?'学生':'老师'}"></td>
+        <td th:text="${user.password}"></td>
         <td>
-            <a th:href="@{/templates/user/edit(id=${user.id})}">更改</a><a th:href="@{/templates/user/deleteTUser(id=${user.id})}">删除</a>
+            <a th:href="@{/templates/user/edit(id=${user.id})}">更改</a><a
+                th:href="@{/templates/user/deleteTUser(id=${user.id})}">删除</a>
         </td>
     </tr>
 </table>

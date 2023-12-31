@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="zh" xml:th="http://www.thymeleaf.org">
+
 <head>
     <meta charset="UTF-8"/>
     <title>学生管理</title>
@@ -7,34 +8,37 @@
 </head>
 
 <body class="bg-gray-100 p-8">
-<h1 class="text-3xl font-bold mb-6">添加学生</h1>
+<h1 class="text-3xl font-bold mb-6">编辑学生信息</h1>
 
 <!-- 信息 -->
-<form action="/student/add_action" method="get" class="max-w-md mx-auto">
+<form action="/student/edit_action" method="get" class="max-w-md mx-auto">
+    <input type="hidden" name="id" th:value="${student.id}" />
+    <!-- Assuming you have a student object with properties id, username, grade, major, and clazz -->
     <div class="mb-4">
         <label for="username" class="block text-sm font-medium text-gray-700">姓名</label>
-        <input type="text" name="username" id="username" value="" class="mt-1 p-2 w-full border rounded-md"/>
+        <input type="text" name="username" id="username" th:value="${student.username}" class="mt-1 p-2 w-full border rounded-md" />
     </div>
 
     <div class="mb-4">
         <label for="grade" class="block text-sm font-medium text-gray-700">年级</label>
-        <input type="number" name="grade" id="grade" value="" class="mt-1 p-2 w-full border rounded-md"/>
+        <input type="number" name="grade" id="grade" th:value="${student.grade}" class="mt-1 p-2 w-full border rounded-md" />
     </div>
 
     <div class="mb-4">
         <label for="major" class="block text-sm font-medium text-gray-700">专业</label>
-        <input type="text" name="major" id="major" value="" class="mt-1 p-2 w-full border rounded-md"/>
+        <input type="text" name="major" id="major" th:value="${student.major}" class="mt-1 p-2 w-full border rounded-md" />
     </div>
 
     <div class="mb-4">
         <label for="clazz" class="block text-sm font-medium text-gray-700">班级</label>
-        <input type="number" name="clazz" id="clazz" value="" class="mt-1 p-2 w-full border rounded-md"/>
+        <input type="number" name="clazz" id="clazz" th:value="${student.clazz}" class="mt-1 p-2 w-full border rounded-md" />
     </div>
 
     <div class="flex space-x-4">
-        <button type="submit" class="bg-blue-500 text-white px-4 py-2 rounded-md">添加</button>
+        <button type="submit" class="bg-blue-500 text-white px-4 py-2 rounded-md">保存</button>
         <a href="/student/index" class="text-gray-500 hover:text-gray-700 px-4 py-2 rounded-md">取消</a>
     </div>
 </form>
 </body>
+
 </html>
