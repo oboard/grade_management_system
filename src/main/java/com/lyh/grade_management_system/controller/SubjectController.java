@@ -25,14 +25,14 @@ public class SubjectController {
     // 筛选方式
     @RequestMapping("/index")
     public String selectList(
-            String subjectname,
+            String name,
             Model model
     ) {
         List<Subject> list = subjectService.selectList();
         // 筛选
-        if (subjectname != null && !subjectname.isEmpty()) {
+        if (name != null && !name.isEmpty()) {
             for (int i = 0; i < list.size(); i++) {
-                if (!list.get(i).getName().equals(subjectname)) {
+                if (!list.get(i).getName().equals(name)) {
                     list.remove(i);
                     i--;
                 }
