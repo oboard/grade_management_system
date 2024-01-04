@@ -5,6 +5,7 @@ import lombok.Data;
 public class Score {
 
     private Long id;
-    // 1 老师 0 学生
-    private String name;
+    private Long studentId;
+    private Long subjectId;
+    private Long score;
 }

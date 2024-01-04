@@ -9,6 +9,6 @@ public class User {
     private Integer role;
     private Integer grade;
     private String major;
-    private Integer clazz;
+    private Long clazzId;
     private String password;
 }

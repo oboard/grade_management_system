@@ -6,7 +6,7 @@ import com.lyh.grade_management_system.bean.User;
 import java.util.List;
 
 public interface ScoreService {
-    public Long insert(Score user);
+    public Long replace(Score user);
     public void delete(Long id);
     public void update(Score user);
 

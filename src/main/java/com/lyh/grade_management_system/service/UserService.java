@@ -12,5 +12,7 @@ public interface UserService {
 
     List<User> selectList();
 
+    List<User> selectListByClazzId(Long clazzId);
+
     User selectById(Long id);
 }

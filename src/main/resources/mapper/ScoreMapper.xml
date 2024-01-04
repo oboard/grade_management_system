@@ -4,8 +4,8 @@
     <select id="selectList" resultType="com.lyh.grade_management_system.bean.Score">
         select * from score
     </select>
-    <insert id="insert" parameterType="com.lyh.grade_management_system.bean.Score">
-        insert into score(student_id, subject_id, score)
+    <insert id="replace" parameterType="com.lyh.grade_management_system.bean.Score">
+        replace into score(student_id, subject_id, score)
         values(#{student_id}, #{subject_id}, #{score})
     </insert>
     <update id="update" parameterType="com.lyh.grade_management_system.bean.Score">

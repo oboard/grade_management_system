@@ -65,7 +65,7 @@ public class StudentController {
         }
         if (clazz != null) {
             for (int i = 0; i < list.size(); i++) {
-                if (!list.get(i).getClazz().equals(clazz)) {
+                if (!list.get(i).getClazzId().equals(clazz)) {
                     list.remove(i);
                     i--;
                 }
@@ -110,7 +110,7 @@ public class StudentController {
         user.setUsername(username);
         user.setGrade(grade);
         user.setMajor(major);
-        user.setClazz(clazz);
+        user.setClazzId(clazz);
         user.setRole(0);
         userService.update(user);
         // 重定向到index
@@ -130,7 +130,7 @@ public class StudentController {
         user.setUsername(username);
         user.setGrade(grade);
         user.setMajor(major);
-        user.setClazz(clazz);
+        user.setClazzId(clazz);
         user.setRole(0);
         userService.insert(user);
         // 重定向到index

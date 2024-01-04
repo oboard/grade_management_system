@@ -9,7 +9,7 @@ import java.util.List;
 public interface ScoreMapper {
     List<Score> selectList();
 
-    Long insert(Score score);
+    Long replace(Score score);
 
     void delete(Long id);
 

@@ -33,8 +33,8 @@ public class ScoreServiceImpl implements ScoreService {
     }
 
     @Override
-    public Long insert(Score score) {
-        return scoreMapper.insert(score);
+    public Long replace(Score score) {
+        return scoreMapper.replace(score);
     }
 
     @Override

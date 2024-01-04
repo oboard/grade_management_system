@@ -11,12 +11,12 @@
         from user
     </select>
     <insert id="insertUser" parameterType="com.lyh.grade_management_system.bean.User">
-        insert into user(username, password, role, grade, clazz, major)
-        values(#{username}, #{password}, #{role}, #{grade}, #{clazz}, #{major})
+        insert into user(username, password, role, grade, clazz_id, major)
+        values(#{username}, #{password}, #{role}, #{grade}, #{clazzId}, #{major})
     </insert>
     <update id="updateUser" parameterType="com.lyh.grade_management_system.bean.User">
         update user
-        set username = #{username}, password = #{password}, role = #{role}, grade = #{grade}, clazz = #{clazz}, major = #{major}
+        set username = #{username}, password = #{password}, role = #{role}, grade = #{grade}, clazz_id = #{clazzId}, major = #{major}
         where id = #{id}
     </update>
     <delete id="deleteUser">
@@ -28,5 +28,10 @@
         select *
         from user
         where id = #{id}
+    </select>
+    <select id="selectListByClazzId" resultType="com.lyh.grade_management_system.bean.User">
+        select *
+        from user
+        where clazz_id = #{clazzId}
     </select>
 </mapper>

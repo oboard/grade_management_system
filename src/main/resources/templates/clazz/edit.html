@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="zh" xml:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8"/>
+    <title>班级管理</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+</head>
+
+<body class="bg-gray-100 p-8">
+<h1 class="text-3xl font-bold mb-6">编辑班级信息</h1>
+
+<!-- 信息 -->
+<form action="/clazz/edit_action" method="get" class="max-w-md mx-auto">
+    <input type="hidden" name="id" th:value="${clazz.id}" />
+    <!-- Assuming you have a student object with properties id, username, grade, major, and clazz -->
+    <div class="mb-4">
+        <label for="name" class="block text-sm font-medium text-gray-700">名称</label>
+        <input type="text" name="name" id="name" th:value="${clazz.name}" class="mt-1 p-2 w-full border rounded-md" />
+    </div>
+
+    <div class="flex space-x-4">
+        <button type="submit" class="bg-blue-500 text-white px-4 py-2 rounded-md">保存</button>
+        <a href="/clazz/index" class="text-gray-500 hover:text-gray-700 px-4 py-2 rounded-md">取消</a>
+    </div>
+</form>
+</body>
+
+</html>

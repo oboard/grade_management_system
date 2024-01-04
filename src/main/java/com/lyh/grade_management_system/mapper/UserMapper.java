@@ -16,4 +16,6 @@ public interface UserMapper {
     void updateUser(User user);
 
     User selectUserById(Long id);
+
+    List<User> selectListByClazzId(Long clazzId);
 }

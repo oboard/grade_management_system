@@ -75,7 +75,7 @@ public class ScoreController {
         }
         if (clazz != null) {
             for (int i = 0; i < userList.size(); i++) {
-                if (!userList.get(i).getClazz().equals(clazz)) {
+                if (!userList.get(i).getClazzId().equals(clazz)) {
                     userList.remove(i);
                     i--;
                 }
@@ -102,17 +102,17 @@ public class ScoreController {
         return "/score/index";
     }
 
-    @RequestMapping("/add")
-    public String add() {
-        return "/score/add";
-    }
-
-    @RequestMapping("/delete")
-    public String delete(Long id) {
-        scoreService.delete(id);
-        // 重定向到index
-        return "redirect:/score/index";
-    }
+//    @RequestMapping("/add")
+//    public String add() {
+//        return "/score/add";
+//    }
+//
+//    @RequestMapping("/delete")
+//    public String delete(Long id) {
+//        scoreService.delete(id);
+//        // 重定向到index
+//        return "redirect:/score/index";
+//    }
 
     @RequestMapping("/edit")
     public String edit(Long id, Model model) {
@@ -124,24 +124,60 @@ public class ScoreController {
     @RequestMapping("/edit_action")
     public String editAction(
             Long id,
-            String name
+            Long student_id,
+            Long subject_id,
+            Long score
     ) {
-        Score score = new Score();
-        score.setId(id);
-        score.setName(name);
-        scoreService.update(score);
+        Score scoreItem = new Score();
+        scoreItem.setId(id);
+        scoreItem.setStudentId(student_id);
+        scoreItem.setSubjectId(subject_id);
+        scoreItem.setScore(score);
+        scoreService.update(scoreItem);
         // 重定向到index
         return "redirect:/score/index";
     }
 
     @RequestMapping("/add_action")
     public String addAction(
-            String name
+            Long student_id,
+            Long subject_id,
+            Long score
     ) {
-        Score score = new Score();
-        score.setName(name);
-        scoreService.insert(score);
+        Score scoreItem = new Score();
+        scoreItem.setStudentId(student_id);
+        scoreItem.setSubjectId(subject_id);
+        scoreItem.setScore(score);
+        scoreService.replace(scoreItem);
         // 重定向到index
         return "redirect:/score/index";
+    }
+
+
+    @RequestMapping("/mark")
+    public String mark(
+            Long clazzId,
+            Model model
+    ) {
+
+        List<User> userList = userService.selectListByClazzId(clazzId);
+        if (!userList.isEmpty()) {
+            List<Score> scoreList = scoreService.selectListByUserId(userList);
+            if (!scoreList.isEmpty()) {
+                List<Subject> subjectList = subjectService.selectListBySubjectId(scoreList);
+
+                List<StudentScore> studentScoreList = new LinkedList<>();
+                for (int i = 0; i < scoreList.size(); i++) {
+                    var studentScore = new StudentScore();
+                    studentScore.setScore(scoreList.get(i));
+                    studentScore.setStudent(userList.get(i));
+                    studentScore.setSubject(subjectList.get(i));
+                    studentScoreList.add(studentScore);
+                }
+
+                model.addAttribute("list", studentScoreList);
+            }
+        }
+        return "/score/mark";
     }
 }

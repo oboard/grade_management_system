@@ -24,6 +24,11 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
+    public List<User> selectListByClazzId(Long clazzId) {
+        return userMapper.selectListByClazzId(clazzId);
+    }
+
+    @Override
     public User selectById(Long id) {
         return userMapper.selectUserById(id);
     }
