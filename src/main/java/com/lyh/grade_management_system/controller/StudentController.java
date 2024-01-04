@@ -101,7 +101,7 @@ public class StudentController {
             String username,
             Integer grade,
             String major,
-            Integer clazz,
+            Long clazzId,
             Model model,
             ModelMap map
     ) {
@@ -110,7 +110,7 @@ public class StudentController {
         user.setUsername(username);
         user.setGrade(grade);
         user.setMajor(major);
-        user.setClazzId(clazz);
+        user.setClazzId(clazzId);
         user.setRole(0);
         userService.update(user);
         // 重定向到index
@@ -122,7 +122,7 @@ public class StudentController {
             String username,
             Integer grade,
             String major,
-            Integer clazz,
+            Long clazzId,
             Model model,
             ModelMap map
     ) {
@@ -130,7 +130,7 @@ public class StudentController {
         user.setUsername(username);
         user.setGrade(grade);
         user.setMajor(major);
-        user.setClazzId(clazz);
+        user.setClazzId(clazzId);
         user.setRole(0);
         userService.insert(user);
         // 重定向到index
