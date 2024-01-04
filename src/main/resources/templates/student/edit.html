@@ -13,15 +13,15 @@
 <!-- 信息 -->
 <form action="/student/edit_action" method="get" class="max-w-md mx-auto">
     <input type="hidden" name="id" th:value="${student.id}" />
-    <!-- Assuming you have a student object with properties id, username, grade, major, and clazz -->
+    <!-- Assuming you have a student object with properties id, username, score, major, and clazz -->
     <div class="mb-4">
         <label for="username" class="block text-sm font-medium text-gray-700">姓名</label>
         <input type="text" name="username" id="username" th:value="${student.username}" class="mt-1 p-2 w-full border rounded-md" />
     </div>
 
     <div class="mb-4">
-        <label for="grade" class="block text-sm font-medium text-gray-700">年级</label>
-        <input type="number" name="grade" id="grade" th:value="${student.grade}" class="mt-1 p-2 w-full border rounded-md" />
+        <label for="score" class="block text-sm font-medium text-gray-700">年级</label>
+        <input type="number" name="score" id="score" th:value="${student.score}" class="mt-1 p-2 w-full border rounded-md" />
     </div>
 
     <div class="mb-4">

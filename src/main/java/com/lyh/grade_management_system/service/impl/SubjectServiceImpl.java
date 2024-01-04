@@ -1,5 +1,6 @@
 package com.lyh.grade_management_system.service.impl;
 
+import com.lyh.grade_management_system.bean.Score;
 import com.lyh.grade_management_system.bean.Subject;
 import com.lyh.grade_management_system.bean.User;
 import com.lyh.grade_management_system.mapper.SubjectMapper;
@@ -28,6 +29,11 @@ public class SubjectServiceImpl implements SubjectService {
     @Override
     public Subject selectById(Long id) {
         return subjectMapper.selectById(id);
+    }
+
+    @Override
+    public List<Subject> selectListBySubjectId(List<Score> scoreList) {
+        return subjectMapper.selectBySubjectIds(scoreList);
     }
 
     @Override

@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.lyh.grade_management_system.mapper.ScoreMapper">
+    <select id="selectList" resultType="com.lyh.grade_management_system.bean.Score">
+        select * from score
+    </select>
+    <insert id="insert" parameterType="com.lyh.grade_management_system.bean.Score">
+        insert into score(student_id, subject_id, score)
+        values(#{student_id}, #{subject_id}, #{score})
+    </insert>
+    <update id="update" parameterType="com.lyh.grade_management_system.bean.Score">
+        update score
+        set student_id = #{student_id}, subject_id = #{subject_id}, score = #{score}
+        where id = #{id}
+    </update>
+    <delete id="delete">
+        delete
+        from score
+        where id = #{id}
+    </delete>
+    <select id="selectById" resultType="com.lyh.grade_management_system.bean.Score">
+        select *
+        from score
+        where id = #{id}
+    </select>
+    <select id="selectByUserIds" resultType="com.lyh.grade_management_system.bean.Score">
+        SELECT * FROM score WHERE student_id IN
+        <foreach item='user' collection='userList' open='(' separator=',' close=')'>
+            #{user.id}
+        </foreach>
+    </select>
+</mapper>

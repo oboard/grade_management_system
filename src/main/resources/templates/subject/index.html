@@ -40,6 +40,7 @@
     <tr th:each="subject:${subjects}" class="hover:bg-gray-200">
         <td class="border p-2" th:text="${subject.name}"></td>
         <td class="border p-2">
+            <a th:href="@{/score/mark(id=${subject.id})}" class="text-blue-500 mr-2">打分</a>
             <a th:href="@{/subject/edit(id=${subject.id})}" class="text-blue-500 mr-2">更改</a>
             <a th:href="@{/subject/delete(id=${subject.id})}" class="text-red-500">删除</a>
         </td>

@@ -29,4 +29,10 @@
         from subject
         where id = #{id}
     </select>
+    <select id="selectBySubjectIds" resultType="com.lyh.grade_management_system.bean.Subject">
+        SELECT * FROM subject WHERE id IN
+        <foreach item='score' collection='scoreList' open='(' separator=',' close=')'>
+            #{score.subject_id}
+        </foreach>
+    </select>
 </mapper>

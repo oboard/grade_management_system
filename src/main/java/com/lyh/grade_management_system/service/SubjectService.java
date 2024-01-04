@@ -1,5 +1,6 @@
 package com.lyh.grade_management_system.service;
 
+import com.lyh.grade_management_system.bean.Score;
 import com.lyh.grade_management_system.bean.Subject;
 
 import java.util.List;
@@ -13,4 +14,6 @@ public interface SubjectService {
     List<Subject> selectList();
 
     Subject selectById(Long id);
+
+    List<Subject> selectListBySubjectId(List<Score> scoreList);
 }
