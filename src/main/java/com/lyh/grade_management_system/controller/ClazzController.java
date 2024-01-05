@@ -39,6 +39,7 @@ public class ClazzController {
     ) {
         List<Clazz> clazzs = clazzService.selectList(name);
 
+        model.addAttribute("name", name);
         model.addAttribute("clazzs", clazzs);
         return "/clazz/index";
     }

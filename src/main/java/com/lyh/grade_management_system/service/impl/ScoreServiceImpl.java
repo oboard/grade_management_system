@@ -44,6 +44,6 @@ public class ScoreServiceImpl implements ScoreService {
 
     @Override
     public void update(Score score) {
-        scoreMapper.update(score);
+        scoreMapper.replace(score);
     }
 }

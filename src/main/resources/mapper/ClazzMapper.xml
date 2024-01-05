@@ -4,7 +4,7 @@
     <select id="selectList" resultType="com.lyh.grade_management_system.bean.Clazz">
         select * from clazz
         <if test="name != null">
-            where name = #{name}
+            where name like concat('%', #{name}, '%')
         </if>
     </select>
     <insert id="replace" parameterType="com.lyh.grade_management_system.bean.Clazz">

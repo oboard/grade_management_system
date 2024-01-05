@@ -10,7 +10,7 @@
 
 <body class="bg-gray-100 p-8">
 
-<div class="flex items-center justify-between mb-6">
+<div class="flex items-center mb-6 gap-4">
     <a href="/index" class="text-blue-500">&larr; 返回</a>
     <h1 class="text-3xl font-bold">班级管理</h1>
     <!-- Other content goes here -->
@@ -25,7 +25,7 @@
 <form action="/clazz/index" method="get" class="mb-6 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
     <div>
         <label for="name" class="mr-2">名称</label>
-        <input type="text" name="name" id="name" value="" class="p-2 border rounded-md w-full"/>
+        <input type="text" name="name" id="name" th:value="${name}" class="p-2 border rounded-md w-full"/>
     </div>
 
     <button type="submit" class="bg-blue-500 text-white px-4 py-2 rounded-md col-span-full lg:col-span-1">筛选</button>

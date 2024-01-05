@@ -10,7 +10,7 @@
 
 <body class="bg-gray-100 p-8">
 
-<div class="flex items-center justify-between mb-6">
+<div class="flex items-center mb-6 gap-4">
     <a href="/index" class="text-blue-500">&larr; 返回</a>
     <h1 class="text-3xl font-bold">打分</h1>
     <!-- Other content goes here -->
@@ -24,7 +24,7 @@
         <th class="border p-2">班级</th>
         <th class="border p-2">姓名</th>
         <th class="border p-2">分数</th>
-<!--        <th class="border p-2">操作</th>-->
+        <!--        <th class="border p-2">操作</th>-->
     </tr>
     </thead>
     <tbody>
@@ -34,16 +34,45 @@
         <td class="border p-2" th:text="${studentScore.student.username}"></td>
         <td class="border p-2">
             <label>
-                <input type="number" th:value="${studentScore.score.score}"/>
+                <input type="number" th:value="${studentScore.score.score}" th:attr="data-scoreId=${studentScore.score.id}, data-studentId=${studentScore.student.id}, data-subjectId=${studentScore.subject.id}" onclick="updateScore(this)"/>
             </label>
         </td>
-<!--        <td class="border p-2">-->
-<!--            <a th:href="@{/score/edit(id=${studentScore.id})}" class="text-blue-500 mr-2">更改</a>-->
-<!--            <a th:href="@{/score/delete(id=${studentScore.id})}" class="text-red-500">删除</a>-->
-<!--        </td>-->
+        <!--        <td class="border p-2">-->
+        <!--            <a th:href="@{/score/edit(id=${studentScore.id})}" class="text-blue-500 mr-2">更改</a>-->
+        <!--            <a th:href="@{/score/delete(id=${studentScore.id})}" class="text-red-500">删除</a>-->
+        <!--        </td>-->
     </tr>
     </tbody>
 </table>
+<script th:inline="javascript">
+    /*<![CDATA[*/
+    function updateScore(input) {
+        var scoreId = input.getAttribute('data-scoreId');
+        var studentId = input.getAttribute('data-studentId');
+        var subjectId = input.getAttribute('data-subjectId');
+
+        // Construct the query string
+        var queryString = '?student_id=' + studentId + '&subject_id=' + subjectId + '&score=' + input.value;
+
+
+        // Fetch API to send the updated score to the server using GET
+        fetch('/score/edit_action' + queryString, {
+            method: 'GET',
+        })
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Network response was not ok');
+                }
+                // Optionally handle the response here if needed
+            })
+            .catch(error => {
+                console.error('There was a problem with the fetch operation:', error);
+                // Optionally handle the error here
+            });
+    }
+    /*]]>*/
+</script>
+
 </body>
 
 </html>

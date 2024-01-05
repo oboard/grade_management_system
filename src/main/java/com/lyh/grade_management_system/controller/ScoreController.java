@@ -31,82 +31,6 @@ public class ScoreController {
         this.subjectService = subjectService;
     }
 
-    // http://localhost:8080/templates/score/index?gradename=lyh&grade=&major=&clazz=
-    // 筛选方式
-    @RequestMapping("/index")
-    public String selectList(
-            String username,
-            Integer grade,
-            String major,
-            Model model
-    ) {
-        List<User> userList = userService.selectList();
-        // 过滤role为0的用户
-        for (int i = 0; i < userList.size(); i++) {
-            if (userList.get(i).getRole() != 0) {
-                userList.remove(i);
-                i--;
-            }
-        }
-
-        // 筛选
-        if (username != null && !username.isEmpty()) {
-            for (int i = 0; i < userList.size(); i++) {
-                if (!userList.get(i).getUsername().equals(username)) {
-                    userList.remove(i);
-                    i--;
-                }
-            }
-        }
-        if (grade != null) {
-            for (int i = 0; i < userList.size(); i++) {
-                if (!userList.get(i).getGrade().equals(grade)) {
-                    userList.remove(i);
-                    i--;
-                }
-            }
-        }
-        if (major != null && !major.isEmpty()) {
-            for (int i = 0; i < userList.size(); i++) {
-                if (!userList.get(i).getMajor().equals(major)) {
-                    userList.remove(i);
-                    i--;
-                }
-            }
-        }
-
-        if (!userList.isEmpty()) {
-            List<Score> scoreList = scoreService.selectListByUserId(userList);
-            if (!scoreList.isEmpty()) {
-                List<Subject> subjectList = subjectService.selectListBySubjectId(scoreList);
-
-                List<StudentScore> studentScoreList = new LinkedList<>();
-                for (int i = 0; i < scoreList.size(); i++) {
-                    var studentScore = new StudentScore();
-                    studentScore.setScore(scoreList.get(i));
-                    studentScore.setStudent(userList.get(i));
-                    studentScore.setSubject(subjectList.get(i));
-                    studentScoreList.add(studentScore);
-                }
-
-                model.addAttribute("list", studentScoreList);
-            }
-        }
-        return "/score/index";
-    }
-
-//    @RequestMapping("/add")
-//    public String add() {
-//        return "/score/add";
-//    }
-//
-//    @RequestMapping("/delete")
-//    public String delete(Long id) {
-//        scoreService.delete(id);
-//        // 重定向到index
-//        return "redirect:/score/index";
-//    }
-
     @RequestMapping("/edit")
     public String edit(Long id, Model model) {
         Score score = scoreService.selectById(id);
@@ -127,23 +51,7 @@ public class ScoreController {
         scoreItem.setSubjectId(subject_id);
         scoreItem.setScore(score);
         scoreService.update(scoreItem);
-        // 重定向到index
-        return "redirect:/score/index";
-    }
-
-    @RequestMapping("/add_action")
-    public String addAction(
-            Long student_id,
-            Long subject_id,
-            Long score
-    ) {
-        Score scoreItem = new Score();
-        scoreItem.setStudentId(student_id);
-        scoreItem.setSubjectId(subject_id);
-        scoreItem.setScore(score);
-        scoreService.replace(scoreItem);
-        // 重定向到index
-        return "redirect:/score/index";
+        return "/index";
     }
 
 

@@ -26,6 +26,17 @@ public class UserController {
         return "/user/index";
     }
 
+
+    @RequestMapping("/index")
+    public String index() {
+        return "redirect:/";
+    }
+
+    @RequestMapping("/")
+    public String indexRoot() {
+        return "/index";
+    }
+
     @RequestMapping("/login")
     public String login() {
         return "/login";
