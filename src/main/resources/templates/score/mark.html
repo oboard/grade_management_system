@@ -16,31 +16,6 @@
     <!-- Other content goes here -->
 </div>
 
-<!-- 筛选条件 -->
-<form action="/score/index" method="get" class="mb-6 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-    <div>
-        <label for="username" class="mr-2">姓名</label>
-        <input type="text" name="username" id="username" value="" class="p-2 border rounded-md w-full"/>
-    </div>
-
-    <div>
-        <label for="score" class="mr-2">年级</label>
-        <input type="text" name="score" id="score" value="" class="p-2 border rounded-md w-full"/>
-    </div>
-
-    <div>
-        <label for="major" class="mr-2">专业</label>
-        <input type="text" name="major" id="major" value="" class="p-2 border rounded-md w-full"/>
-    </div>
-
-    <div>
-        <label for="clazz" class="mr-2">班级</label>
-        <input type="text" name="clazz" id="clazz" value="" class="p-2 border rounded-md w-full"/>
-    </div>
-
-    <button type="submit" class="bg-blue-500 text-white px-4 py-2 rounded-md col-span-full lg:col-span-1">筛选</button>
-</form>
-
 <!-- 分数列表 -->
 <table class="w-full border-collapse border">
     <thead>
@@ -49,19 +24,23 @@
         <th class="border p-2">班级</th>
         <th class="border p-2">姓名</th>
         <th class="border p-2">分数</th>
-        <th class="border p-2">操作</th>
+<!--        <th class="border p-2">操作</th>-->
     </tr>
     </thead>
     <tbody>
-    <tr th:each="user:${scores}" class="hover:bg-gray-200">
-        <td class="border p-2" th:text="${user.subject.name}"></td>
-        <td class="border p-2" th:text="${user.student.grade}${user.student.major}${user.clazz}"></td>
-        <td class="border p-2" th:text="${user.student.username}"></td>
-        <td class="border p-2" th:text="${user.score.score}"></td>
+    <tr th:each="studentScore:${list}" class="hover:bg-gray-200">
+        <td class="border p-2" th:text="${studentScore.subject.name}"></td>
+        <td class="border p-2" th:text="${studentScore.student.grade+studentScore.student.major}"></td>
+        <td class="border p-2" th:text="${studentScore.student.username}"></td>
         <td class="border p-2">
-            <a th:href="@{/score/edit(id=${user.id})}" class="text-blue-500 mr-2">更改</a>
-            <a th:href="@{/score/delete(id=${user.id})}" class="text-red-500">删除</a>
+            <label>
+                <input type="number" th:value="${studentScore.score.score}"/>
+            </label>
         </td>
+<!--        <td class="border p-2">-->
+<!--            <a th:href="@{/score/edit(id=${studentScore.id})}" class="text-blue-500 mr-2">更改</a>-->
+<!--            <a th:href="@{/score/delete(id=${studentScore.id})}" class="text-red-500">删除</a>-->
+<!--        </td>-->
     </tr>
     </tbody>
 </table>

@@ -25,7 +25,6 @@ public class StudentController {
             String username,
             Integer grade,
             String major,
-            Integer clazz,
             Model model,
             ModelMap map
     ) {
@@ -58,14 +57,6 @@ public class StudentController {
         if (major != null && !major.isEmpty()) {
             for (int i = 0; i < list.size(); i++) {
                 if (!list.get(i).getMajor().equals(major)) {
-                    list.remove(i);
-                    i--;
-                }
-            }
-        }
-        if (clazz != null) {
-            for (int i = 0; i < list.size(); i++) {
-                if (!list.get(i).getClazzId().equals(clazz)) {
                     list.remove(i);
                     i--;
                 }

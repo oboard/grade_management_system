@@ -9,9 +9,11 @@
 </head>
 
 <body class="bg-gray-100 p-8">
-
-<h1 class="text-3xl font-bold mb-6">学科管理</h1>
-
+<div class="flex items-center justify-between mb-6">
+    <a href="/index" class="text-blue-500">&larr; 返回</a>
+    <h1 class="text-3xl font-bold">学科管理</h1>
+    <!-- Other content goes here -->
+</div>
 <a href="/subject/add" class="m-4 text-white bg-blue-500 rounded-md p-3 absolute top-0 right-0 flex items-center">
     <span class="mr-2">添加学科</span>
     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" class="h-4 w-4">
@@ -40,7 +42,6 @@
     <tr th:each="subject:${subjects}" class="hover:bg-gray-200">
         <td class="border p-2" th:text="${subject.name}"></td>
         <td class="border p-2">
-            <a th:href="@{/score/mark(id=${subject.id})}" class="text-blue-500 mr-2">打分</a>
             <a th:href="@{/subject/edit(id=${subject.id})}" class="text-blue-500 mr-2">更改</a>
             <a th:href="@{/subject/delete(id=${subject.id})}" class="text-red-500">删除</a>
         </td>

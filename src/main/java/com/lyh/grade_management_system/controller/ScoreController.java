@@ -11,8 +11,10 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Objects;
 
 @Controller
 @RequestMapping("/score")
@@ -36,7 +38,6 @@ public class ScoreController {
             String username,
             Integer grade,
             String major,
-            Integer clazz,
             Model model
     ) {
         List<User> userList = userService.selectList();
@@ -68,14 +69,6 @@ public class ScoreController {
         if (major != null && !major.isEmpty()) {
             for (int i = 0; i < userList.size(); i++) {
                 if (!userList.get(i).getMajor().equals(major)) {
-                    userList.remove(i);
-                    i--;
-                }
-            }
-        }
-        if (clazz != null) {
-            for (int i = 0; i < userList.size(); i++) {
-                if (!userList.get(i).getClazzId().equals(clazz)) {
                     userList.remove(i);
                     i--;
                 }
@@ -159,25 +152,34 @@ public class ScoreController {
             Long clazzId,
             Model model
     ) {
-
         List<User> userList = userService.selectListByClazzId(clazzId);
-        if (!userList.isEmpty()) {
-            List<Score> scoreList = scoreService.selectListByUserId(userList);
-            if (!scoreList.isEmpty()) {
-                List<Subject> subjectList = subjectService.selectListBySubjectId(scoreList);
-
-                List<StudentScore> studentScoreList = new LinkedList<>();
-                for (int i = 0; i < scoreList.size(); i++) {
-                    var studentScore = new StudentScore();
-                    studentScore.setScore(scoreList.get(i));
-                    studentScore.setStudent(userList.get(i));
-                    studentScore.setSubject(subjectList.get(i));
-                    studentScoreList.add(studentScore);
+        List<StudentScore> studentScoreList = new ArrayList<>();
+        List<Score> scoreList = scoreService.selectListByUserId(userList);
+        List<Subject> subjectList = subjectService.selectList();
+        for (Subject subject : subjectList) {
+            for (User user : userList) {
+                var studentScore = new StudentScore();
+                studentScore.setStudent(user);
+                // 从scoreList和subjectList中抽取
+                studentScore.setSubject(subject);
+                for (Score score : scoreList) {
+                    if (Objects.equals(score.getStudentId(), user.getId())
+                            && Objects.equals(score.getSubjectId(), subject.getId())) {
+                        studentScore.setScore(score);
+                        break;
+                    }
                 }
-
-                model.addAttribute("list", studentScoreList);
+                if(studentScore.getScore() == null) {
+                    Score score = new Score();
+                    score.setScore(100L);
+                    score.setStudentId(user.getId());
+                    score.setSubjectId(subject.getId());
+                    studentScore.setScore(score);
+                }
+                studentScoreList.add(studentScore);
             }
         }
+        model.addAttribute("list", studentScoreList);
         return "/score/mark";
     }
 }
